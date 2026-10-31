@@ -258,7 +258,6 @@ def build_inventory(
 
             # Metadata breakdowns
             "files_by_extension": dict(sorted(extensions.items())),
-            # Metadata breakdowns
             "languages": dict(sorted(languages.items())),
             "files_by_language": dict(sorted(languages.items())),
             "files_by_category": dict(sorted(categories.items())),
