@@ -19,7 +19,7 @@ def list_files(directory_path):
                 file_path.relative_to(path).as_posix()
             )
 
-    return relative_paths
+    return sorted(relative_paths)
 
 
 if __name__ == "__main__":
