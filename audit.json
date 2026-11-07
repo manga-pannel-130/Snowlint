@@ -1,0 +1,2517 @@
+{
+  "audited_at": "2026-11-07T06:57:38.419978+00:00",
+  "context": {
+    "audit_scope": "full",
+    "intended_audience": "People who want to take notes better",
+    "system_purpose": "Smart Note Taking app"
+  },
+  "coverage": {
+    "files_discovered": 6,
+    "files_excluded": 0,
+    "files_failed": 0,
+    "files_protected": 0,
+    "files_read": 6,
+    "files_skipped": 0,
+    "limitations": [
+      "Static analysis cannot establish runtime correctness, production behavior, model quality, fairness, or latency.",
+      "JavaScript and TypeScript syntax support is lexical and incomplete."
+    ],
+    "source_files_analyzed": 3,
+    "source_files_discovered": 3
+  },
+  "dependencies": {
+    "package-lock.json": [
+      {
+        "constraint": null,
+        "name": "@oxc-project/types",
+        "resolved": "https://registry.npmjs.org/@oxc-project/types/-/types-0.156.0.tgz",
+        "source": "package-lock.json",
+        "version": "0.156.0"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-android-arm-eabi",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-android-arm-eabi/-/binding-android-arm-eabi-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-android-arm64",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-android-arm64/-/binding-android-arm64-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-darwin-arm64",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-darwin-arm64/-/binding-darwin-arm64-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-darwin-x64",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-darwin-x64/-/binding-darwin-x64-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-freebsd-x64",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-freebsd-x64/-/binding-freebsd-x64-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-linux-arm-gnueabihf",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-arm-gnueabihf/-/binding-linux-arm-gnueabihf-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-linux-arm64-gnu",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-arm64-gnu/-/binding-linux-arm64-gnu-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-linux-arm64-musl",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-arm64-musl/-/binding-linux-arm64-musl-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-linux-ppc64-gnu",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-ppc64-gnu/-/binding-linux-ppc64-gnu-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-linux-s390x-gnu",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-s390x-gnu/-/binding-linux-s390x-gnu-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-linux-x64-gnu",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-linux-x64-musl",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-x64-musl/-/binding-linux-x64-musl-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-openharmony-arm64",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-openharmony-arm64/-/binding-openharmony-arm64-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-win32-arm64-msvc",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/binding-win32-x64-msvc",
+        "resolved": "https://registry.npmjs.org/@rolldown/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "@rolldown/pluginutils",
+        "resolved": "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz",
+        "source": "package-lock.json",
+        "version": "1.0.1"
+      },
+      {
+        "constraint": null,
+        "name": "@vitejs/plugin-react",
+        "resolved": "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-6.2.1.tgz",
+        "source": "package-lock.json",
+        "version": "6.2.1"
+      },
+      {
+        "constraint": null,
+        "name": "detect-libc",
+        "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
+        "source": "package-lock.json",
+        "version": "2.1.2"
+      },
+      {
+        "constraint": null,
+        "name": "fdir",
+        "resolved": "https://registry.npmjs.org/fdir/-/fdir-6.5.0.tgz",
+        "source": "package-lock.json",
+        "version": "6.5.0"
+      },
+      {
+        "constraint": null,
+        "name": "fsevents",
+        "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz",
+        "source": "package-lock.json",
+        "version": "2.3.3"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss",
+        "resolved": "https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-android-arm64",
+        "resolved": "https://registry.npmjs.org/lightningcss-android-arm64/-/lightningcss-android-arm64-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-darwin-arm64",
+        "resolved": "https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-darwin-x64",
+        "resolved": "https://registry.npmjs.org/lightningcss-darwin-x64/-/lightningcss-darwin-x64-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-freebsd-x64",
+        "resolved": "https://registry.npmjs.org/lightningcss-freebsd-x64/-/lightningcss-freebsd-x64-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-linux-arm-gnueabihf",
+        "resolved": "https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf/-/lightningcss-linux-arm-gnueabihf-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-linux-arm64-gnu",
+        "resolved": "https://registry.npmjs.org/lightningcss-linux-arm64-gnu/-/lightningcss-linux-arm64-gnu-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-linux-arm64-musl",
+        "resolved": "https://registry.npmjs.org/lightningcss-linux-arm64-musl/-/lightningcss-linux-arm64-musl-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-linux-x64-gnu",
+        "resolved": "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-linux-x64-musl",
+        "resolved": "https://registry.npmjs.org/lightningcss-linux-x64-musl/-/lightningcss-linux-x64-musl-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-win32-arm64-msvc",
+        "resolved": "https://registry.npmjs.org/lightningcss-win32-arm64-msvc/-/lightningcss-win32-arm64-msvc-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "lightningcss-win32-x64-msvc",
+        "resolved": "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.33.0.tgz",
+        "source": "package-lock.json",
+        "version": "1.33.0"
+      },
+      {
+        "constraint": null,
+        "name": "nanoid",
+        "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.20.tgz",
+        "source": "package-lock.json",
+        "version": "3.3.20"
+      },
+      {
+        "constraint": null,
+        "name": "picocolors",
+        "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+        "source": "package-lock.json",
+        "version": "1.1.1"
+      },
+      {
+        "constraint": null,
+        "name": "picomatch",
+        "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.7.tgz",
+        "source": "package-lock.json",
+        "version": "4.0.7"
+      },
+      {
+        "constraint": null,
+        "name": "postcss",
+        "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.32.tgz",
+        "source": "package-lock.json",
+        "version": "8.5.32"
+      },
+      {
+        "constraint": null,
+        "name": "react",
+        "resolved": "https://registry.npmjs.org/react/-/react-19.3.1.tgz",
+        "source": "package-lock.json",
+        "version": "19.3.1"
+      },
+      {
+        "constraint": null,
+        "name": "react-dom",
+        "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-19.3.1.tgz",
+        "source": "package-lock.json",
+        "version": "19.3.1"
+      },
+      {
+        "constraint": null,
+        "name": "rolldown",
+        "resolved": "https://registry.npmjs.org/rolldown/-/rolldown-1.2.16.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.16"
+      },
+      {
+        "constraint": null,
+        "name": "scheduler",
+        "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.28.0.tgz",
+        "source": "package-lock.json",
+        "version": "0.28.0"
+      },
+      {
+        "constraint": null,
+        "name": "source-map-js",
+        "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.2.tgz",
+        "source": "package-lock.json",
+        "version": "1.2.2"
+      },
+      {
+        "constraint": null,
+        "name": "tinyglobby",
+        "resolved": "https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.17.tgz",
+        "source": "package-lock.json",
+        "version": "0.2.17"
+      },
+      {
+        "constraint": null,
+        "name": "vite",
+        "resolved": "https://registry.npmjs.org/vite/-/vite-8.3.6.tgz",
+        "source": "package-lock.json",
+        "version": "8.3.6"
+      }
+    ],
+    "package.json": [
+      {
+        "constraint": "^19.3.1",
+        "group": "dependencies",
+        "name": "react",
+        "source": "package.json",
+        "version": null
+      },
+      {
+        "constraint": "^19.3.1",
+        "group": "dependencies",
+        "name": "react-dom",
+        "source": "package.json",
+        "version": null
+      },
+      {
+        "constraint": "^6.2.1",
+        "group": "devDependencies",
+        "name": "@vitejs/plugin-react",
+        "source": "package.json",
+        "version": null
+      },
+      {
+        "constraint": "^8.3.6",
+        "group": "devDependencies",
+        "name": "vite",
+        "source": "package.json",
+        "version": null
+      }
+    ]
+  },
+  "findings": [
+    {
+      "category": "security",
+      "confidence": "high",
+      "evidence": [
+        {
+          "excerpt": "function generateId() { return Math.random().toString(36).substr(2, 9) + Date.now().toString(36); }",
+          "line_end": 39,
+          "line_start": 39,
+          "path": "src/App.jsx",
+          "verification": "verified"
+        }
+      ],
+      "id": "f0d8b2d6d7eb",
+      "limitations": [],
+      "origin": "deterministic",
+      "recommendation": "Use crypto.randomUUID() or window.crypto.getRandomValues() for unpredictable, secure identifier generation.",
+      "rule_id": "JS-INSECURE-RANDOM",
+      "severity": "medium",
+      "status": "evidence_backed_risk",
+      "summary": "Math.random() is cryptographically predictable and prone to collisions when used for identifiers or security values.",
+      "title": "Insecure pseudo-random number generator used for identifier generation"
+    },
+    {
+      "category": "ai_ml",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "excerpt": "const context = notes.slice(-3).map(n => n.title + '\\n' + n.content).join('\\n\\n---\\n\\n');",
+          "line_end": 45,
+          "line_start": 45,
+          "path": "src/App.jsx",
+          "verification": "verified"
+        }
+      ],
+      "id": "2f9f3da7b5d6",
+      "limitations": [],
+      "origin": "deterministic",
+      "recommendation": "Sanitize user inputs and wrap items in explicit boundary tags (e.g. <user_note>...</user_note>) before injecting into model context.",
+      "rule_id": "AI-CLIENT-CONTEXT-INJECTION",
+      "severity": "high",
+      "status": "evidence_backed_risk",
+      "summary": "User note contents are concatenated directly into the AI context without boundary delimiters or sanitization, risking prompt injection and context poisoning.",
+      "title": "Client-side prompt context constructed via raw text concatenation"
+    },
+    {
+      "category": "ai_ml",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "excerpt": "{activeTab === 'doubts' ? <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: spacing.lg, maxWidth: '1000px', width: '100%', margin: '0 auto' }}><div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight",
+          "line_end": 246,
+          "line_start": 246,
+          "path": "src/App.jsx",
+          "verification": "verified"
+        }
+      ],
+      "id": "28d583dedd89",
+      "limitations": [],
+      "origin": "deterministic",
+      "recommendation": "Sanitize user inputs and wrap items in explicit boundary tags (e.g. <user_note>...</user_note>) before injecting into model context.",
+      "rule_id": "AI-CLIENT-CONTEXT-INJECTION",
+      "severity": "high",
+      "status": "evidence_backed_risk",
+      "summary": "User note contents are concatenated directly into the AI context without boundary delimiters or sanitization, risking prompt injection and context poisoning.",
+      "title": "Client-side prompt context constructed via raw text concatenation"
+    },
+    {
+      "category": "security",
+      "confidence": "high",
+      "evidence": [
+        {
+          "excerpt": "const NOTE_ID = () => Math.random().toString(36).substring(2, 10) + Date.now().toString(36);",
+          "line_end": 98,
+          "line_start": 98,
+          "path": "src/main.jsx",
+          "verification": "verified"
+        }
+      ],
+      "id": "7bb13688e6c0",
+      "limitations": [],
+      "origin": "deterministic",
+      "recommendation": "Use crypto.randomUUID() or window.crypto.getRandomValues() for unpredictable, secure identifier generation.",
+      "rule_id": "JS-INSECURE-RANDOM",
+      "severity": "medium",
+      "status": "evidence_backed_risk",
+      "summary": "Math.random() is cryptographically predictable and prone to collisions when used for identifiers or security values.",
+      "title": "Insecure pseudo-random number generator used for identifier generation"
+    }
+  ],
+  "nodes": [
+    {
+      "attributes": [],
+      "id": "dependency:@oxc-project/types:0.156.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@oxc-project/types",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-android-arm-eabi:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-android-arm-eabi",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-android-arm64:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-android-arm64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-darwin-arm64:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-darwin-arm64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-darwin-x64:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-darwin-x64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-freebsd-x64:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-freebsd-x64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-linux-arm-gnueabihf:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-linux-arm-gnueabihf",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-linux-arm64-gnu:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-linux-arm64-gnu",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-linux-arm64-musl:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-linux-arm64-musl",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-linux-ppc64-gnu:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-linux-ppc64-gnu",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-linux-s390x-gnu:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-linux-s390x-gnu",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-linux-x64-gnu:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-linux-x64-musl:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-linux-x64-musl",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-openharmony-arm64:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-openharmony-arm64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-win32-arm64-msvc:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-win32-arm64-msvc",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/binding-win32-x64-msvc:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/binding-win32-x64-msvc",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@rolldown/pluginutils:1.0.1",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@rolldown/pluginutils",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@vitejs/plugin-react:6.2.1",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@vitejs/plugin-react",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:detect-libc:2.1.2",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "detect-libc",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:fdir:6.5.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "fdir",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:fsevents:2.3.3",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "fsevents",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-android-arm64:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-android-arm64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-darwin-arm64:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-darwin-arm64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-darwin-x64:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-darwin-x64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-freebsd-x64:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-freebsd-x64",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-linux-arm-gnueabihf:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-linux-arm-gnueabihf",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-linux-arm64-gnu:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-linux-arm64-gnu",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-linux-arm64-musl:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-linux-arm64-musl",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-linux-x64-gnu:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-linux-x64-gnu",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-linux-x64-musl:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-linux-x64-musl",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-win32-arm64-msvc:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-win32-arm64-msvc",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:lightningcss-win32-x64-msvc:1.33.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "lightningcss-win32-x64-msvc",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:nanoid:3.3.20",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "nanoid",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:picocolors:1.1.1",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "picocolors",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:picomatch:4.0.7",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "picomatch",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:postcss:8.5.32",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "postcss",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:react:19.3.1",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "react",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:react-dom:19.3.1",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "react-dom",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:rolldown:1.2.16",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "rolldown",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:scheduler:0.28.0",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "scheduler",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:source-map-js:1.2.2",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "source-map-js",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:tinyglobby:0.2.17",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "tinyglobby",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:vite:8.3.6",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "vite",
+      "path": "package-lock.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:react:",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "react",
+      "path": "package.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:react-dom:",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "react-dom",
+      "path": "package.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:@vitejs/plugin-react:",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "@vitejs/plugin-react",
+      "path": "package.json"
+    },
+    {
+      "attributes": [],
+      "id": "dependency:vite:",
+      "kind": "dependency",
+      "line_start": null,
+      "methods": [],
+      "name": "vite",
+      "path": "package.json"
+    },
+    {
+      "attributes": [],
+      "id": "file:src/App.jsx",
+      "kind": "file",
+      "line_start": null,
+      "methods": [],
+      "name": "App.jsx",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:27:defaultSettings",
+      "kind": "function",
+      "line_start": 27,
+      "methods": [],
+      "name": "defaultSettings",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:29:defaultNotes",
+      "kind": "function",
+      "line_start": 29,
+      "methods": [],
+      "name": "defaultNotes",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:35:loadFromStorage",
+      "kind": "function",
+      "line_start": 35,
+      "methods": [],
+      "name": "loadFromStorage",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:38:saveToStorage",
+      "kind": "function",
+      "line_start": 38,
+      "methods": [],
+      "name": "saveToStorage",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:39:generateId",
+      "kind": "function",
+      "line_start": 39,
+      "methods": [],
+      "name": "generateId",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:41:getAIResponse",
+      "kind": "function",
+      "line_start": 41,
+      "methods": [],
+      "name": "getAIResponse",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:45:context",
+      "kind": "function",
+      "line_start": 45,
+      "methods": [],
+      "name": "context",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:142:addToast",
+      "kind": "function",
+      "line_start": 142,
+      "methods": [],
+      "name": "addToast",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:147:removeToast",
+      "kind": "function",
+      "line_start": 147,
+      "methods": [],
+      "name": "removeToast",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:148:timers",
+      "kind": "function",
+      "line_start": 148,
+      "methods": [],
+      "name": "timers",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:189:showToast",
+      "kind": "function",
+      "line_start": 189,
+      "methods": [],
+      "name": "showToast",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:190:reset",
+      "kind": "function",
+      "line_start": 190,
+      "methods": [],
+      "name": "reset",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:191:saveNotes",
+      "kind": "function",
+      "line_start": 191,
+      "methods": [],
+      "name": "saveNotes",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:192:tagList",
+      "kind": "function",
+      "line_start": 192,
+      "methods": [],
+      "name": "tagList",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:196:filteredNotes",
+      "kind": "function",
+      "line_start": 196,
+      "methods": [],
+      "name": "filteredNotes",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:215:handleAsk",
+      "kind": "function",
+      "line_start": 215,
+      "methods": [],
+      "name": "handleAsk",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:215:note",
+      "kind": "function",
+      "line_start": 215,
+      "methods": [],
+      "name": "note",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:216:currentNote",
+      "kind": "function",
+      "line_start": 216,
+      "methods": [],
+      "name": "currentNote",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:254:handleSave",
+      "kind": "function",
+      "line_start": 254,
+      "methods": [],
+      "name": "handleSave",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/App.jsx:258:the",
+      "kind": "function",
+      "line_start": 258,
+      "methods": [],
+      "name": "the",
+      "path": "src/App.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "file:src/main.jsx",
+      "kind": "file",
+      "line_start": null,
+      "methods": [],
+      "name": "main.jsx",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:98:NOTE_ID",
+      "kind": "function",
+      "line_start": 98,
+      "methods": [],
+      "name": "NOTE_ID",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:103:loadJSON",
+      "kind": "function",
+      "line_start": 103,
+      "methods": [],
+      "name": "loadJSON",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:107:saveJSON",
+      "kind": "function",
+      "line_start": 107,
+      "methods": [],
+      "name": "saveJSON",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:110:getAI",
+      "kind": "function",
+      "line_start": 110,
+      "methods": [],
+      "name": "getAI",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:111:setAI",
+      "kind": "function",
+      "line_start": 111,
+      "methods": [],
+      "name": "setAI",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:113:getAIResponse",
+      "kind": "function",
+      "line_start": 113,
+      "methods": [],
+      "name": "getAIResponse",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:131:useVoiceRecorder",
+      "kind": "function",
+      "line_start": 131,
+      "methods": [],
+      "name": "useVoiceRecorder",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:138:start",
+      "kind": "function",
+      "line_start": 138,
+      "methods": [],
+      "name": "start",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:150:stop",
+      "kind": "function",
+      "line_start": 150,
+      "methods": [],
+      "name": "stop",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:162:App",
+      "kind": "function",
+      "line_start": 162,
+      "methods": [],
+      "name": "App",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:184:showToast",
+      "kind": "function",
+      "line_start": 184,
+      "methods": [],
+      "name": "showToast",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:186:filtered",
+      "kind": "function",
+      "line_start": 186,
+      "methods": [],
+      "name": "filtered",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:189:saveNote",
+      "kind": "function",
+      "line_start": 189,
+      "methods": [],
+      "name": "saveNote",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:202:deleteNote",
+      "kind": "function",
+      "line_start": 202,
+      "methods": [],
+      "name": "deleteNote",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:204:togglePin",
+      "kind": "function",
+      "line_start": 204,
+      "methods": [],
+      "name": "togglePin",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:206:startEdit",
+      "kind": "function",
+      "line_start": 206,
+      "methods": [],
+      "name": "startEdit",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:208:resetForm",
+      "kind": "function",
+      "line_start": 208,
+      "methods": [],
+      "name": "resetForm",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:211:handleAIRequest",
+      "kind": "function",
+      "line_start": 211,
+      "methods": [],
+      "name": "handleAIRequest",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "symbol:src/main.jsx:220:handleVoiceSend",
+      "kind": "function",
+      "line_start": 220,
+      "methods": [],
+      "name": "handleVoiceSend",
+      "path": "src/main.jsx"
+    },
+    {
+      "attributes": [],
+      "id": "file:vite.config.js",
+      "kind": "file",
+      "line_start": null,
+      "methods": [],
+      "name": "vite.config.js",
+      "path": "vite.config.js"
+    }
+  ],
+  "relationships": [
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 1,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "imports",
+      "source": "file:src/App.jsx",
+      "target": "module:react"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 35,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:35:loadFromStorage"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 38,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:38:saveToStorage"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 39,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:39:generateId"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 41,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:41:getAIResponse"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 131,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 141,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 142,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 143,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:39:generateId"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 147,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 148,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useEffect"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 148,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:147:removeToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 151,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:147:removeToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 188,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 189,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 190,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 191,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 193,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:39:generateId"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 193,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:189:showToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 193,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:190:reset"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 194,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:189:showToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 194,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:190:reset"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 214,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 215,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 215,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "symbol:src/App.jsx:41:getAIResponse"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 253,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 254,
+          "path": "src/App.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/App.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 6,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "imports",
+      "source": "file:src/main.jsx",
+      "target": "module:react"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 110,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:103:loadJSON"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 111,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:107:saveJSON"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 111,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:103:loadJSON"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 132,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 133,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 134,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 135,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useRef"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 136,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useRef"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 138,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 150,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useCallback"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 152,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:150:stop"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 156,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useEffect"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 156,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:150:stop"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 163,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 164,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 164,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:103:loadJSON"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 165,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 165,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:103:loadJSON"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 166,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 167,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 168,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 169,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 170,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 171,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 172,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 173,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 174,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 175,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 176,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 177,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 178,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useState"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 179,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:131:useVoiceRecorder"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 181,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useEffect"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 181,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:107:saveJSON"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 182,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "module:react:useEffect"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 182,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:107:saveJSON"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 190,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:184:showToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 193,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:184:showToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 195,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:98:NOTE_ID"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 197,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:184:showToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 199,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:208:resetForm"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 202,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:184:showToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 212,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:184:showToast"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 215,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:113:getAIResponse"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 220,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:211:handleAIRequest"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 297,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:206:startEdit"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 301,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:204:togglePin"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 302,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:202:deleteNote"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 339,
+          "path": "src/main.jsx",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:src/main.jsx",
+      "target": "symbol:src/main.jsx:211:handleAIRequest"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 1,
+          "path": "vite.config.js",
+          "verification": "observed"
+        }
+      ],
+      "kind": "imports",
+      "source": "file:vite.config.js",
+      "target": "module:vite"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 2,
+          "path": "vite.config.js",
+          "verification": "observed"
+        }
+      ],
+      "kind": "imports",
+      "source": "file:vite.config.js",
+      "target": "module:@vitejs/plugin-react"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 4,
+          "path": "vite.config.js",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:vite.config.js",
+      "target": "module:vite:defineConfig"
+    },
+    {
+      "confidence": "observed",
+      "evidence": [
+        {
+          "excerpt": null,
+          "line_end": null,
+          "line_start": 5,
+          "path": "vite.config.js",
+          "verification": "observed"
+        }
+      ],
+      "kind": "calls_function",
+      "source": "file:vite.config.js",
+      "target": "module:@vitejs/plugin-react:react"
+    }
+  ],
+  "repository": "/home/vishalmadhav/workspace/vidi-scripsi",
+  "schema_version": "1.1",
+  "scores": {
+    "available_signal": 48.0,
+    "coverage": 1.0,
+    "critical_gate": false,
+    "dimensions": {
+      "ai_ml": {
+        "coverage": 1.0,
+        "findings": 2,
+        "status": "signal_only",
+        "value": 48.0
+      },
+      "security": {
+        "coverage": 1.0,
+        "findings": 2,
+        "status": "signal_only",
+        "value": 48.0
+      }
+    },
+    "notes": [
+      "Rule-signal indicator only; not a general software quality or production-readiness rating.",
+      "Dimensions without implemented checks are unknown, not passed.",
+      "Overall score is unknown because architecture, testing, and performance benchmarks are not implemented."
+    ],
+    "overall": null,
+    "status": "partial_unknown",
+    "unknown_dimensions": [
+      "architecture",
+      "performance",
+      "testing"
+    ]
+  },
+  "workflows": []
+}

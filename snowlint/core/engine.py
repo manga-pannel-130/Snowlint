@@ -1248,6 +1248,96 @@ def _js_analysis(
                     source_line,
                 )
             )
+        # Insecure PRNG for IDs or Tokens
+        if value == "random" and i >= 2 and values[i - 1] == "." and values[i - 2] == "Math":
+            if any(term in source_line.lower() for term in ("id", "token", "key", "secret", "session", "uuid")):
+                findings.append(
+                    _finding(
+                        "JS-INSECURE-RANDOM",
+                        path,
+                        line,
+                        "Insecure pseudo-random number generator used for identifier generation",
+                        "security",
+                        Severity.MEDIUM,
+                        "Math.random() is cryptographically predictable and prone to collisions when used for identifiers or security values.",
+                        "Use crypto.randomUUID() or window.crypto.getRandomValues() for unpredictable, secure identifier generation.",
+                        source_line,
+                        Confidence.HIGH,
+                    )
+                )
+
+        # Unencrypted LocalStorage for User Data
+        if value in {"setItem", "getItem"} and i >= 2 and values[i - 1] == "." and values[i - 2] == "localStorage":
+            if any(term in source_line.lower() for term in ("note", "user", "auth", "token", "secret", "record", "setting", "data")):
+                findings.append(
+                    _finding(
+                        "JS-LOCAL-STORAGE-SENSITIVE",
+                        path,
+                        line,
+                        "Client data persisted in unencrypted browser localStorage",
+                        "security",
+                        Severity.LOW,
+                        "localStorage is accessible to any JavaScript running in the document origin, making stored client data vulnerable to XSS exfiltration.",
+                        "Avoid storing sensitive user data in unencrypted localStorage; use IndexedDB with Web Cryptography encryption or secure HttpOnly cookies.",
+                        source_line,
+                        Confidence.MEDIUM,
+                    )
+                )
+
+        # Client-Side AI Context Injection / Concatenation
+        if (
+            "context" in source_line.lower()
+            and any(w in source_line.lower() for w in (".join(", "notes.", ".map("))
+        ):
+            findings.append(
+                _finding(
+                    "AI-CLIENT-CONTEXT-INJECTION",
+                    path,
+                    line,
+                    "Client-side prompt context constructed via raw text concatenation",
+                    "ai_ml",
+                    Severity.HIGH,
+                    "User note contents are concatenated directly into the AI context without boundary delimiters or sanitization, risking prompt injection and context poisoning.",
+                    "Sanitize user inputs and wrap items in explicit boundary tags (e.g. <user_note>...</user_note>) before injecting into model context.",
+                    source_line,
+                    Confidence.MEDIUM,
+                )
+            )
+
+        # Hardcoded Local / Unencrypted Service URL in string literals
+        if kind == "string" and value.startswith("http://") and any(h in value for h in ("localhost", "127.0.0.1", "0.0.0.0", "11434")):
+            findings.append(
+                _finding(
+                    "JS-HARDCODED-SERVICE-URL",
+                    path,
+                    line,
+                    "Hardcoded unencrypted local service endpoint in client code",
+                    "security",
+                    Severity.LOW,
+                    f"A hardcoded local service URL '{value[:50]}' was detected in client-side code.",
+                    "Source service URLs from runtime environment variables (e.g. import.meta.env) to support secure production deployments.",
+                    source_line,
+                    Confidence.MEDIUM,
+                )
+            )
+
+        # Direct HTML Injection Risk
+        if value in {"dangerouslySetInnerHTML", "innerHTML", "document.write"}:
+            findings.append(
+                _finding(
+                    "JS-DANGEROUS-HTML-INJECTION",
+                    path,
+                    line,
+                    "Direct HTML injection without sanitization",
+                    "security",
+                    Severity.HIGH,
+                    f"Usage of {value} can allow arbitrary HTML and script execution if data is untrusted.",
+                    "Use standard text nodes or sanitize inputs using DOMPurify before inserting into the DOM.",
+                    source_line,
+                    Confidence.HIGH,
+                )
+            )
+
         credential = re.search(
             r"(?:api[_-]?key|secret|password|token)\s*[:=]\s*['\"]([^'\"]{12,})['\"]",
             source_line,

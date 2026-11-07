@@ -213,6 +213,140 @@ textarea {
 </html>"""
 
 
+def _render_evidence_blocks(evidence_items):
+    out = []
+    for ev in evidence_items:
+        p = html.escape(ev.get("path", ""))
+        line = html.escape(str(ev.get("line_start") or "1"))
+        excerpt = html.escape(ev.get("excerpt") or "(no excerpt)")
+        out.append(
+            '<div class="evidence-box">'
+            '<div class="evidence-loc">'
+            '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">'
+            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>'
+            '</svg>'
+            '<span>' + p + ':' + line + '</span>'
+            '</div>'
+            '<code>' + excerpt + '</code>'
+            '</div>'
+        )
+    return "".join(out)
+
+
+def _render_findings_html(findings_list):
+    if not findings_list:
+        return """
+        <div class="empty-state">
+          <div class="icon">✨</div>
+          <h3>No Issues Detected</h3>
+          <p>No defects or vulnerabilities were triggered by the currently enabled ruleset on analyzed files.</p>
+        </div>"""
+    cards = []
+    for f in findings_list:
+        sev = html.escape(f.get("severity", "info").lower())
+        sev_upper = html.escape(f.get("severity", "info").upper())
+        rule_id = html.escape(f.get("rule_id", ""))
+        title = html.escape(f.get("title", ""))
+        category = html.escape(f.get("category", ""))
+        confidence = html.escape(str(f.get("confidence", "")))
+        summary = html.escape(f.get("summary", ""))
+        recommendation = html.escape(f.get("recommendation", ""))
+        search_blob = html.escape(
+            (f.get("title", "") + " " + f.get("rule_id", "") + " " + f.get("summary", "")).lower()
+        )
+        evidence_html = _render_evidence_blocks(f.get("evidence", []))
+        sev_class = sev if sev in {"critical", "high", "medium", "low"} else "low"
+        pill_class = sev[:4]
+
+        card = (
+            f'<div class="finding-card severity-{sev_class}" data-severity="{sev_class}" data-text="{search_blob}">'
+            '<div class="finding-header">'
+            '<div class="finding-title-group">'
+            f'<span class="sev-pill {pill_class}">{sev_upper}</span>'
+            f'<span class="rule-tag">{rule_id}</span>'
+            f'<span class="finding-title">{title}</span>'
+            '</div>'
+            f'<span style="font-size: 0.8rem; color: var(--text-dim);">category: <b>{category}</b> · confidence: {confidence}</span>'
+            '</div>'
+            f'<p class="finding-summary">{summary}</p>'
+            f'{evidence_html}'
+            '<div class="remediation-box">'
+            f'<strong>Remediation:</strong> {recommendation}'
+            '</div>'
+            '</div>'
+        )
+        cards.append(card)
+    return "".join(cards)
+
+
+def _render_workflows_html(workflows):
+    if not workflows:
+        return """
+        <div class="empty-state">
+          <div class="icon">🏛️</div>
+          <h3>No Multi-Step Workflows Reconstructed</h3>
+          <p>No multi-component route bindings or model pipelines could be established from static declarations.</p>
+        </div>"""
+    out = []
+    for w in workflows:
+        name = html.escape(w.get("name", ""))
+        conf = html.escape(w.get("confidence", "observed"))
+        conf_pill = "med" if conf == "inferred" else "low"
+        steps_html = []
+        for idx, step in enumerate(w.get("steps", [])):
+            step_esc = html.escape(step)
+            steps_html.append(
+                f'<div class="workflow-step">'
+                f'<span class="step-num">{idx + 1}</span>'
+                f'<span style="color: #cbd5e1;">{step_esc}</span>'
+                '</div>'
+            )
+        out.append(
+            '<div class="workflow-card">'
+            '<div class="workflow-header">'
+            f'<div class="workflow-name">{name}</div>'
+            f'<span class="sev-pill {conf_pill}">{conf.upper()}</span>'
+            '</div>'
+            '<div>' + "".join(steps_html) + '</div>'
+            '</div>'
+        )
+    return "".join(out)
+
+
+def _render_dependencies_html(dependencies):
+    total = sum(len(v) for v in dependencies.values())
+    if total == 0:
+        return """
+        <div class="empty-state" style="grid-column: 1 / -1;">
+          <div class="icon">📦</div>
+          <h3>No Manifest Dependencies Observed</h3>
+          <p>No pyproject.toml, requirements.txt, or package.json dependencies were detected.</p>
+        </div>"""
+    out = []
+    for src, deps in dependencies.items():
+        src_esc = html.escape(src)
+        for dep in deps:
+            name_esc = html.escape(dep.get("name", ""))
+            ver_esc = html.escape(dep.get("version") or dep.get("constraint") or "unconstrained")
+            out.append(
+                '<div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.2rem;">'
+                f'<div style="font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">{name_esc}</div>'
+                f'<div style="font-size: 0.82rem; color: var(--accent-cyan); font-family: monospace; margin-bottom: 0.4rem;">{ver_esc}</div>'
+                f'<div style="font-size: 0.78rem; color: var(--text-dim);">Source: {src_esc}</div>'
+                '</div>'
+            )
+    return "".join(out)
+
+
+def _render_coverage_limitations_html(limitations, notes):
+    out = []
+    for lim in limitations:
+        out.append(f'<li style="margin-bottom: 0.5rem;">{html.escape(lim)}</li>')
+    for n in notes:
+        out.append(f'<li style="margin-bottom: 0.5rem; color: #cbd5e1;">{html.escape(n)}</li>')
+    return "".join(out)
+
+
 def _render_dashboard_html(payload):
     findings_list = payload.get("findings", [])
     coverage = payload.get("coverage", {})
@@ -224,10 +358,10 @@ def _render_dashboard_html(payload):
     dependencies = payload.get("dependencies", {})
     repo = payload.get("repository", "")
 
-    critical_count = sum(1 for f in findings_list if f["severity"].lower() == "critical")
-    high_count = sum(1 for f in findings_list if f["severity"].lower() == "high")
-    med_count = sum(1 for f in findings_list if f["severity"].lower() == "medium")
-    low_count = sum(1 for f in findings_list if f["severity"].lower() in {"low", "info"})
+    critical_count = sum(1 for f in findings_list if f.get("severity", "").lower() == "critical")
+    high_count = sum(1 for f in findings_list if f.get("severity", "").lower() == "high")
+    med_count = sum(1 for f in findings_list if f.get("severity", "").lower() == "medium")
+    low_count = sum(1 for f in findings_list if f.get("severity", "").lower() in {"low", "info"})
 
     score_val = scores.get("available_signal")
     if score_val is not None:
@@ -237,16 +371,26 @@ def _render_dashboard_html(payload):
         score_display = "N/A"
         score_color = "#94a3b8"
 
-    findings_json = json.dumps(findings_list)
-    workflows_json = json.dumps(workflows)
-    coverage_json = json.dumps(coverage, indent=2)
+    findings_html = _render_findings_html(findings_list)
+    workflows_html = _render_workflows_html(workflows)
+    dependencies_html = _render_dependencies_html(dependencies)
+    limitations_html = _render_coverage_limitations_html(
+        coverage.get("limitations", []), scores.get("notes", [])
+    )
+
+    repo_esc = html.escape(repo)
+    repo_name_esc = html.escape(Path(repo).name or repo)
+    purpose_esc = html.escape(context.get("system_purpose", ""))
+    audience_esc = html.escape(context.get("intended_audience", ""))
+    scope_val = context.get("audit_scope", "full")
+    export_dir_default = html.escape(str(Path(repo).resolve() / "snowlint_exports"))
 
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Snowlint Audit · {html.escape(Path(repo).name or repo)}</title>
+<title>Snowlint Audit · {repo_name_esc}</title>
 <style>
 :root {{
   --bg-app: #080c14;
@@ -279,7 +423,6 @@ body {{
   display: flex;
   flex-direction: column;
 }}
-/* Navigation Bar */
 .navbar {{
   background: rgba(15, 22, 36, 0.85);
   backdrop-filter: blur(12px);
@@ -362,8 +505,6 @@ body {{
   filter: brightness(1.1);
   transform: translateY(-1px);
 }}
-
-/* Main Layout */
 .layout {{
   max-width: 1400px;
   margin: 0 auto;
@@ -371,8 +512,6 @@ body {{
   width: 100%;
   flex: 1;
 }}
-
-/* Metric Cards */
 .metrics-grid {{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -438,8 +577,6 @@ body {{
 .sev-pill.high {{ background: rgba(249, 115, 22, 0.18); color: var(--sev-high); border: 1px solid rgba(249, 115, 22, 0.3); }}
 .sev-pill.med {{ background: rgba(234, 179, 8, 0.18); color: var(--sev-med); border: 1px solid rgba(234, 179, 8, 0.3); }}
 .sev-pill.low {{ background: rgba(59, 130, 246, 0.18); color: var(--sev-low); border: 1px solid rgba(59, 130, 246, 0.3); }}
-
-/* Navigation Tabs */
 .tabs {{
   display: flex;
   align-items: center;
@@ -477,8 +614,6 @@ body {{
   border-radius: 9999px;
   font-size: 0.75rem;
 }}
-
-/* Filter Bar */
 .filter-bar {{
   display: flex;
   align-items: center;
@@ -508,8 +643,6 @@ body {{
   color: #fff;
   font-size: 0.88rem;
 }}
-
-/* Findings List */
 .findings-container {{
   display: flex;
   flex-direction: column;
@@ -527,7 +660,6 @@ body {{
 .finding-card.severity-high {{ border-left-color: var(--sev-high); }}
 .finding-card.severity-medium {{ border-left-color: var(--sev-med); }}
 .finding-card.severity-low {{ border-left-color: var(--sev-low); }}
-
 .finding-header {{
   display: flex;
   align-items: center;
@@ -592,8 +724,6 @@ body {{
   color: var(--accent-cyan);
   margin-right: 0.4rem;
 }}
-
-/* Empty State */
 .empty-state {{
   text-align: center;
   padding: 4rem 2rem;
@@ -616,8 +746,6 @@ body {{
   max-width: 500px;
   margin: 0 auto;
 }}
-
-/* Export Studio */
 .export-grid {{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -686,8 +814,6 @@ body {{
   color: #000;
   font-weight: 700;
 }}
-
-/* Form Settings for Export */
 .export-settings-card {{
   background: var(--bg-card-subtle);
   border: 1px solid var(--border-subtle);
@@ -721,8 +847,6 @@ body {{
   width: auto;
   accent-color: var(--accent-cyan);
 }}
-
-/* Architecture / Workflows View */
 .workflow-card {{
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -763,8 +887,6 @@ body {{
   justify-content: center;
   flex-shrink: 0;
 }}
-
-/* New Audit Modal */
 .modal-backdrop {{
   display: none;
   position: fixed;
@@ -791,15 +913,14 @@ body {{
 </style>
 </head>
 <body>
-<!-- Top Navbar -->
 <nav class="navbar">
   <div class="nav-brand">
     <span class="logo-icon">❄️</span>
     <span class="title">Snowlint Audit Studio</span>
   </div>
-  <div class="nav-repo" title="{html.escape(repo)}">
+  <div class="nav-repo" title="{repo_esc}">
     <span>Repo:</span>
-    <strong>{html.escape(repo)}</strong>
+    <strong>{repo_esc}</strong>
   </div>
   <div class="nav-actions">
     <button class="btn-sm" onclick="openNewAuditModal()">
@@ -813,9 +934,7 @@ body {{
   </div>
 </nav>
 
-<!-- Main Container -->
 <main class="layout">
-  <!-- Key Metrics Row -->
   <div class="metrics-grid">
     <div class="metric-card">
       <div class="metric-title">
@@ -878,7 +997,6 @@ body {{
     </div>
   </div>
 
-  <!-- Navigation Tabs -->
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('findings', this)">
       <span>🔍 Findings</span>
@@ -900,7 +1018,6 @@ body {{
     </button>
   </div>
 
-  <!-- Tab: Findings -->
   <div id="tab-findings" class="tab-content">
     <div class="filter-bar">
       <input type="text" id="finding-search" class="search-input" placeholder="Search findings by rule, title, path or keyword..." oninput="filterFindings()">
@@ -914,94 +1031,28 @@ body {{
     </div>
 
     <div class="findings-container" id="findings-list">
-      {"".join(f'''
-      <div class="finding-card severity-{html.escape(f['severity'].lower())}" data-severity="{html.escape(f['severity'].lower())}" data-text="{html.escape((f['title'] + ' ' + f['rule_id'] + ' ' + f['summary']).lower())}">
-        <div class="finding-header">
-          <div class="finding-title-group">
-            <span class="sev-pill {html.escape(f['severity'].lower()[:4])}">{html.escape(f['severity'].upper())}</span>
-            <span class="rule-tag">{html.escape(f['rule_id'])}</span>
-            <span class="finding-title">{html.escape(f['title'])}</span>
-          </div>
-          <span style="font-size: 0.8rem; color: var(--text-dim);">category: <b>{html.escape(f['category'])}</b> · confidence: {html.escape(f['confidence'])}</span>
-        </div>
-        <p class="finding-summary">{html.escape(f['summary'])}</p>
-        {"".join(f"""
-        <div class="evidence-box">
-          <div class="evidence-loc">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-            <span>{html.escape(ev['path'])}:{ev.get('line_start') or '1'}</span>
-          </div>
-          <code>{html.escape(ev.get('excerpt') or '(no excerpt)')}</code>
-        </div>
-        """ for ev in f.get('evidence', []))}
-        <div class="remediation-box">
-          <strong>Remediation:</strong> {html.escape(f['recommendation'])}
-        </div>
-      </div>
-      ''' for f in findings_list) if findings_list else '''
-      <div class="empty-state">
-        <div class="icon">✨</div>
-        <h3>No Issues Detected</h3>
-        <p>No defects or vulnerabilities were triggered by the currently enabled ruleset on analyzed files.</p>
-      </div>
-      '''}
+      {findings_html}
     </div>
   </div>
 
-  <!-- Tab: Workflows & Architecture -->
   <div id="tab-workflows" class="tab-content" style="display: none;">
     <div style="margin-bottom: 1.5rem;">
       <h3 style="margin-bottom: 0.4rem;">Observed & Inferred Workflows</h3>
       <p style="color: var(--text-muted); font-size: 0.9rem;">Reconstructed API routes, frontend-to-backend call links, and model inference pipelines.</p>
     </div>
-    {"".join(f'''
-    <div class="workflow-card">
-      <div class="workflow-header">
-        <div class="workflow-name">{html.escape(w['name'])}</div>
-        <span class="sev-pill {'med' if w['confidence'] == 'inferred' else 'low'}">{html.escape(w['confidence'].upper())}</span>
-      </div>
-      <div>
-        {"".join(f"""
-        <div class="workflow-step">
-          <span class="step-num">{idx+1}</span>
-          <span style="color: #cbd5e1;">{html.escape(step)}</span>
-        </div>
-        """ for idx, step in enumerate(w.get('steps', [])))}
-      </div>
-    </div>
-    ''' for w in workflows) if workflows else '''
-    <div class="empty-state">
-      <div class="icon">🏛️</div>
-      <h3>No Multi-Step Workflows Reconstructed</h3>
-      <p>No multi-component route bindings or model pipelines could be established from static declarations.</p>
-    </div>
-    '''}
+    {workflows_html}
   </div>
 
-  <!-- Tab: Dependencies -->
   <div id="tab-dependencies" class="tab-content" style="display: none;">
     <div style="margin-bottom: 1.5rem;">
       <h3 style="margin-bottom: 0.4rem;">Declared Dependencies</h3>
       <p style="color: var(--text-muted); font-size: 0.9rem;">Parsed package requirements and lockfile entries across manifest files.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
-      {"".join(f'''
-      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.2rem;">
-        <div style="font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: 0.3rem;">{html.escape(dep['name'])}</div>
-        <div style="font-size: 0.82rem; color: var(--accent-cyan); font-family: monospace; margin-bottom: 0.4rem;">{html.escape(dep.get('version') or dep.get('constraint') or 'unconstrained')}</div>
-        <div style="font-size: 0.78rem; color: var(--text-dim);">Source: {html.escape(src)}</div>
-      </div>
-      ''' for src, deps in dependencies.items() for dep in deps) if any(dependencies.values()) else '''
-      <div class="empty-state" style="grid-column: 1 / -1;">
-        <div class="icon">📦</div>
-        <h3>No Manifest Dependencies Observed</h3>
-        <p>No pyproject.toml, requirements.txt, or package.json dependencies were detected.</p>
-      </div>
-      '''}
+      {dependencies_html}
     </div>
   </div>
 
-  <!-- Tab: Coverage & Boundaries -->
   <div id="tab-coverage" class="tab-content" style="display: none;">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem;">
       <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.6rem;">
@@ -1020,14 +1071,12 @@ body {{
       <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.6rem;">
         <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Analysis Boundaries & Caveats</h3>
         <ul style="list-style: disc; padding-left: 1.2rem; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
-          {"".join(f'<li style="margin-bottom: 0.5rem;">{html.escape(lim)}</li>' for lim in coverage.get("limitations", []))}
-          {"".join(f'<li style="margin-bottom: 0.5rem; color: #cbd5e1;">{html.escape(n)}</li>' for n in scores.get("notes", []))}
+          {limitations_html}
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- Tab: Export Studio -->
   <div id="tab-exports" class="tab-content" style="display: none;">
     <form method="post" action="/export">
       <div class="export-settings-card">
@@ -1035,7 +1084,7 @@ body {{
         <div class="export-settings-grid">
           <div>
             <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Output Destination Directory</label>
-            <input name="directory" required value="{html.escape(str(Path(repo).resolve() / 'snowlint_exports'))}" placeholder="/path/to/exports">
+            <input name="directory" required value="{export_dir_default}" placeholder="/path/to/exports">
           </div>
           <div>
             <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Presentation Theme</label>
@@ -1148,7 +1197,6 @@ body {{
   </div>
 </main>
 
-<!-- New Audit Modal -->
 <div id="new-audit-modal" class="modal-backdrop">
   <div class="modal-content">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.4rem;">
@@ -1158,24 +1206,24 @@ body {{
     <form method="post" action="/audit">
       <div style="margin-bottom: 1.2rem;">
         <label style="font-size: 0.84rem; font-weight: 600; display:block; margin-bottom: 0.4rem;">Target repository path</label>
-        <input name="repository" required value="{html.escape(repo)}" placeholder="/path/to/project">
+        <input name="repository" required value="{repo_esc}" placeholder="/path/to/project">
       </div>
       <div style="margin-bottom: 1.2rem;">
         <label style="font-size: 0.84rem; font-weight: 600; display:block; margin-bottom: 0.4rem;">What does the system do?</label>
-        <textarea name="purpose" placeholder="Describe system architecture and context...">{html.escape(context.get('system_purpose', ''))}</textarea>
+        <textarea name="purpose" placeholder="Describe system architecture and context...">{purpose_esc}</textarea>
       </div>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
         <div>
           <label style="font-size: 0.84rem; font-weight: 600; display:block; margin-bottom: 0.4rem;">Audience</label>
-          <input name="audience" value="{html.escape(context.get('intended_audience', ''))}" placeholder="Developers, Auditors">
+          <input name="audience" value="{audience_esc}" placeholder="Developers, Auditors">
         </div>
         <div>
           <label style="font-size: 0.84rem; font-weight: 600; display:block; margin-bottom: 0.4rem;">Scope</label>
           <select name="scope">
-            <option value="full" {'selected' if context.get('audit_scope') == 'full' else ''}>Full Audit</option>
-            <option value="security" {'selected' if context.get('audit_scope') == 'security' else ''}>Security & Credentials</option>
-            <option value="ai_ml" {'selected' if context.get('audit_scope') == 'ai_ml' else ''}>AI/ML Risk</option>
-            <option value="architecture" {'selected' if context.get('audit_scope') == 'architecture' else ''}>Architecture</option>
+            <option value="full" {'selected' if scope_val == 'full' else ''}>Full Audit</option>
+            <option value="security" {'selected' if scope_val == 'security' else ''}>Security & Credentials</option>
+            <option value="ai_ml" {'selected' if scope_val == 'ai_ml' else ''}>AI/ML Risk</option>
+            <option value="architecture" {'selected' if scope_val == 'architecture' else ''}>Architecture</option>
           </select>
         </div>
       </div>
@@ -1198,7 +1246,6 @@ function filterFindings() {{
   const query = document.getElementById('finding-search').value.toLowerCase();
   const severity = document.getElementById('severity-filter').value;
   const cards = document.querySelectorAll('.finding-card');
-  let visible = 0;
   cards.forEach(card => {{
     const cardSev = card.getAttribute('data-severity');
     const cardText = card.getAttribute('data-text');
@@ -1208,7 +1255,6 @@ function filterFindings() {{
     const matchesQuery = !query || cardText.includes(query);
     if (matchesSev && matchesQuery) {{
       card.style.display = 'block';
-      visible++;
     }} else {{
       card.style.display = 'none';
     }}
