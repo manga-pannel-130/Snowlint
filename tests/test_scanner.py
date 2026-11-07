@@ -41,6 +41,14 @@ class TestScanner(unittest.TestCase):
 
         self.assertEqual(result, ["src/main.py"])
 
+    def test_ignores_python_package_metadata_directories(self):
+        self.create_file("snowlint.egg-info/PKG-INFO")
+        self.create_file("src/main.py")
+
+        result = list_files(self.root)
+
+        self.assertEqual(result, ["src/main.py"])
+
     def test_keeps_useful_hidden_files(self):
         self.create_file(".gitignore")
         self.create_file(".github/workflows/ci.yml")

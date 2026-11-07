@@ -82,7 +82,9 @@ def get_exclusion_reason(
     """
     path = Path(relative_path)
 
-    if is_directory and path.name in ignore_names:
+    if is_directory and (
+        path.name in ignore_names or path.name.endswith(".egg-info")
+    ):
         return "directory_name_exclusion"
 
     for pattern in ignore_patterns:
